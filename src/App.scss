@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+//Typography
+//Font Family for Sans Serif
+$font-family-sans-serif: "Lato",
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+"Noto Sans",
+sans-serif,
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji";
+//Responsive Font Sizes
+$enable-responsive-font-sizes: true;
+//Color Modifications
+$primary: #172B4D;
+$theme-colors: ("theme-primary": #0747A6);
+@import "../node_modules/bootstrap/scss/bootstrap";
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 75px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    background-color: #F5F5F5;
+}
+
+.active {
+    background-color: rgba(7, 71, 166, 0.3);
+    padding: 8px 16px;
+    margin: 0 10px;
+    color: #0747a6 !important;
+    border-radius: 6px;
+}
+
+.bg-primary {
+    background-color: #ffffff !important;
+}
+
+.a {
+    fill: #0747A6;
+    fill-rule: evenodd;
+}
+
+.wh {
+    fill: white;
+    fill-rule: evenodd;
+}
+
+.analytic-card-height {
+    min-height: 272px;
+}
+
+.analytic-card-rounded {
+    border-radius: 10px;
+}
+
+.theme-color {
+    color: #0747A6;
+}
+
+.PersonalDetailAddBtn {
+    padding-top: 7vh;
+}
+
+.hoverDes li a {
+    box-shadow: 0 0 0 2px #cccccc;
+    height: 50px;
+    width: 50px;
+    padding-top: 1vh;
+    display: block;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 50px;
+    transition: 0.5s;
+    color: #cccccc;
+}
+
+.hoverDes li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    background: #cccccc;
+    z-index: 1;
+    transform: rotate(-45deg) scaleX(0)
+}
+
+.hoverDes li a:hover {
+    color: #ffffff;
+    background-color: #0747A6;
+    border: none;
+}
+
+.pt-6 {
+    padding-top: 2.7rem
+}
+
+// manualEntry scss herm e
+@include media-breakpoint-down(sm) {
+    .topManualEntry {
+        top: -6vh;
+        padding-left: 16vw
+    }
+    .pt-6 {
+        padding-top: 1.0rem
+    }
+    .fullNamePersonal {
+        width: 100%
+    }
+}
+
+.FormHeadingColor {
+    color: #7A869A
+}
+
+.errorBorder {
+    border-color: red;
+}
+
+@media (min-width: 991.98px) {
+    .topManualEntry {
+        top: -7vh;
+        padding-left: 2vw
+    }
+    .fullNamePersonal {
+        width: 25%;
+    }
+}
+
+.ToggleSwitch {
+    position: relative;
+    width: 59rem;
+    height: 2.35rem;
+    display: inline-block;
+    &.ToggleSwitch__rounded {
+        .Slider {
+            border-radius: 15rem;
+            background: #eceff1;
+            border: 1px solid #A0A0A0;
+            &:before {
+                border-radius: 50%;
+            }
+        }
+    }
+    .ToggleSwitch__wrapper {
+        position: relative;
+        width: 3rem;
+        height: 1.35rem;
+        .Slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: .4s ease;
+            &:before {
+                width: 1.45rem;
+                height: 1.45rem;
+                position: absolute;
+                background: #fff;
+                content: '';
+                margin: 0;
+                padding: 0;
+                top: 50%;
+                left: 0.10rem;
+                transform: translateY(-50%);
+                transition: .4s;
+                cursor: pointer;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            }
+            &.isChecked {
+                background: #fff;
+                &:before {
+                    left: calc(100% - 0.10rem - 1.25rem);
+                    background: #0099ff;
+                }
+            }
+        }
+    }
+}
