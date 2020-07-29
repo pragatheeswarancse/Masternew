@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {firestore} from '../firebase/firebase.utils';
-import {useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { firestore } from '../firebase/firebase.utils';
+import { useHistory } from 'react-router-dom';
 import validate from '../components/formValid/loginFormValidationRules';
 import Layout from '../components/Layout/Layout';
 import success from '../assets/success.svg';
@@ -8,10 +8,10 @@ import wpForm from '../assets/wpForm.svg';
 import cloud from '../assets/cloud.svg';
 import done from '../assets/done.svg';
 
-function Done() {
+function Done(props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
-  const [values, setValues] = useState({});
+  const [values] = useState(props.location.data);
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
@@ -38,41 +38,41 @@ function Done() {
     <div>
       <Layout>
         <div className="container col pt-5">
-          <div className="card" style={{border: 'none'}}>
+          <div className="card" style={{ border: 'none' }}>
             <div className="card-body">
               <nav className="nav nav-pills flex-column flex-sm-row hoverDes py-2">
                 <li className="flex-sm-fill text-sm-center nav-link ">
-                  <a style={{backgroundColor: '#0747A6'}}>
+                  <a style={{ backgroundColor: '#0747A6' }}>
                     <img src={wpForm} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     FIRST STEP
                   </span>
                   <p className="col-sm topManualEntry">Person Details</p>
                 </li>
                 <li className="flex-sm-fill text-sm-center nav-link hoverDes">
-                  <a style={{backgroundColor: '#0747A6'}}>
+                  <a style={{ backgroundColor: '#0747A6' }}>
                     <img src={wpForm} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     SECOND STEP
                   </span>
                   <p className="col-sm topManualEntry">Experience</p>
                 </li>
                 <li className="flex-sm-fill text-sm-center nav-link hoverDes">
-                  <a style={{backgroundColor: '#0747A6'}}>
+                  <a style={{ backgroundColor: '#0747A6' }}>
                     <img src={cloud} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     THIRD STEP
                   </span>
                   <p className="col-sm topManualEntry">Upload Resume</p>
                 </li>
                 <li className="flex-sm-fill text-sm-center nav-link hoverDes">
-                  <a style={{backgroundColor: '#0747A6'}}>
+                  <a style={{ backgroundColor: '#0747A6' }}>
                     <img src={done} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     FOURTH STEP
                   </span>
                   <p className="col-sm  topManualEntry">Conformation</p>
@@ -95,7 +95,7 @@ function Done() {
               <button
                 type="button"
                 className="btn font-weight-bold"
-                style={{backgroundColor: '#FFFFFF', color: '#0747A6'}}
+                style={{ backgroundColor: '#FFFFFF', color: '#0747A6' }}
               >
                 Check Profile
               </button>

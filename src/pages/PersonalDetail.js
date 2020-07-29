@@ -14,7 +14,10 @@ const PersonalDetail = (props) => {
 
   const routeChange = () => {
     const path = `/dashboard/experience`;
-    history.push(path);
+    history.push({
+      pathname: path,
+      data: values,
+    });
   };
 
   const handleSubmit = (event) => {

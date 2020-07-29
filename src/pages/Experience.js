@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, {useState, useContext, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Trash from '../assets/trash.svg';
@@ -9,7 +9,7 @@ import FormInput from '../components/FormInput/FormInput';
 import CreatableInputOnly from '../components/SkillSelect';
 import ToggleSwitch from '../components/toggleSwitch';
 import validate from '../components/formValid/loginFormValidationRules';
-import {firestore} from '../firebase/firebase.utils';
+import { firestore } from '../firebase/firebase.utils';
 import PersonalDetail from './PersonalDetail';
 import wpForm from '../assets/wpForm.svg';
 import cloud from '../assets/cloud.svg';
@@ -17,7 +17,7 @@ import done from '../assets/done.svg';
 
 const Experience = (props) => {
   const context = useContext(PersonalDetail);
-
+  // const [stepOneData, setStepOneData] = useState({});
   useEffect(() => {
     console.log(context);
   }, []);
@@ -81,8 +81,12 @@ const Experience = (props) => {
   };
   const history = useHistory();
   const routeChange = () => {
+   
     const path = `/dashboard/upload_resume`;
-    history.push(path);
+    history.push({
+      pathname: path,
+      data: { ...props.location.data, experience: values },
+    });
   };
 
   console.log(values);
@@ -91,23 +95,23 @@ const Experience = (props) => {
     <div>
       <Layout>
         <div className="container col pt-5">
-          <div className="card" style={{border: 'none'}}>
+          <div className="card" style={{ border: 'none' }}>
             <div className="card-body">
               <nav className="nav nav-pills flex-column flex-sm-row hoverDes py-2">
                 <li className="flex-sm-fill text-sm-center nav-link ">
-                  <a style={{backgroundColor: '#0747A6'}}>
+                  <a style={{ backgroundColor: '#0747A6' }}>
                     <img src={wpForm} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     FIRST STEP
                   </span>
                   <p className="col-sm topManualEntry">Person Details</p>
                 </li>
                 <li className="flex-sm-fill text-sm-center nav-link hoverDes">
-                  <a style={{backgroundColor: '#0747A6'}}>
+                  <a style={{ backgroundColor: '#0747A6' }}>
                     <img src={wpForm} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     SECOND STEP
                   </span>
                   <p className="col-sm topManualEntry">Experience</p>
@@ -116,7 +120,7 @@ const Experience = (props) => {
                   <a>
                     <img src={cloud} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     THIRD STEP
                   </span>
                   <p className="col-sm topManualEntry">Upload Resume</p>
@@ -125,7 +129,7 @@ const Experience = (props) => {
                   <a>
                     <img src={done} />
                   </a>
-                  <span className="col-sm topManualEntry" style={{color: '#cccccc'}}>
+                  <span className="col-sm topManualEntry" style={{ color: '#cccccc' }}>
                     FOURTH STEP
                   </span>
                   <p className="col-sm  topManualEntry">Conformation</p>
@@ -136,18 +140,18 @@ const Experience = (props) => {
         </div>
         <form onSubmit={handleSubmit} noValidate>
           <div className="container pt-5">
-            <div className="card h-5 " style={{border: 'none'}}>
+            <div className="card h-5 " style={{ border: 'none' }}>
               <div className="card-body ">
-                <p className="h4" style={{color: '#172B4D'}}>
+                <p className="h4" style={{ color: '#172B4D' }}>
                   Add Work Experience
                 </p>
-                <p className="h6 pt-4" style={{color: '#7A869A'}}>
+                <p className="h6 pt-4" style={{ color: '#7A869A' }}>
                   Software skills
                 </p>
                 <div className="col-md-4 pl-0">
                   <CreatableInputOnly name="softwareSkill" />
                 </div>
-                <p className="h6 pt-5" style={{color: '#7A869A'}}>
+                <p className="h6 pt-5" style={{ color: '#7A869A' }}>
                   Projects Experience
                 </p>
                 <CKEditor
@@ -158,14 +162,14 @@ const Experience = (props) => {
                   }}
                   onChange={(event, editor) => {
                     const data = editor.getData();
-                    console.log({event, editor, data});
+                    console.log({ event, editor, data });
                   }}
                 />
                 />
                 <div className="pt-4">
-                  <span style={{color: '#7A869A'}}> Corrently Employed</span>
+                  <span style={{ color: '#7A869A' }}> Corrently Employed</span>
                   <ToggleSwitch />
-                  <h6 className="pt-3" style={{color: '#172B4D'}}>
+                  <h6 className="pt-3" style={{ color: '#172B4D' }}>
                     Present Employer Detail
                   </h6>
                   <div className="form-row ">
@@ -178,7 +182,7 @@ const Experience = (props) => {
                         type="date"
                         className={`form-control ${
                           errors.presentEmployerFrom ? 'errorBorder' : null
-                        }`}
+                          }`}
                         placeholder=" "
                         name="presentEmployerFrom"
                         value={values.presentEmployerFrom}
@@ -197,7 +201,7 @@ const Experience = (props) => {
                         type="text"
                         className={`form-control ${
                           errors.presentEmployerDesignation ? 'errorBorder' : null
-                        }`}
+                          }`}
                         placeholder=" "
                         name="presentEmployerDesignation"
                         value={values.presentEmployerDesignation}
@@ -218,7 +222,7 @@ const Experience = (props) => {
                     <FormInput
                       className={`form-control w-50 ${
                         errors.presentCompanyName ? 'errorBorder' : null
-                      }`}
+                        }`}
                       type="text"
                       placeholder=" "
                       name="presentCompanyName"
@@ -230,7 +234,7 @@ const Experience = (props) => {
                       <p className="text-danger">{errors.presentCompanyName}</p>
                     )}
                   </div>
-                  <h6 className="pt-3" style={{color: '#172B4D'}}>
+                  <h6 className="pt-3" style={{ color: '#172B4D' }}>
                     Past Employer Detail
                   </h6>
                   <div className="form-row">
@@ -283,7 +287,7 @@ const Experience = (props) => {
                       required
                     />
                   </div>
-                  <div className="col pt-3 pl-md-0" style={{borderRadius: '6px'}}>
+                  <div className="col pt-3 pl-md-0" style={{ borderRadius: '6px' }}>
                     <button type="button" className="btn btn-primary button-size">
                       Add
                     </button>
